@@ -1,0 +1,62 @@
+#!/usr/bin/env php
+
+<?php
+
+require_once __DIR__.'/../autoload.php';
+
+use Symfony\Component\Console\Application;
+use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Input\InputArgument;
+use Symfony\Component\Console\Input\InputOption;
+use Symfony\Component\Console\Output\OutputInterface;
+
+$console = new Application();
+
+$console
+    ->register('show')
+    ->setDefinition(array(
+        new InputArgument('id', InputArgument::REQUIRED, 'The IMDb ID'),
+    ))
+    ->setDescription('Find a IMDb movie with the ID')
+    ->setCode(function (InputInterface $input, OutputInterface $output) {
+        $id = $input->getArgument('id');
+
+        if (!is_numeric($id)) {
+            throw new \InvalidArgumentException(sprintf('The id "%s" should be a integer.', $id));
+        }
+
+        $i = new IMDb\Movie($id);
+
+        $output->writeln(sprintf('Title:     <info>%s</info>', $i->getTitle()));
+        $output->writeln(sprintf('Year:      <info>%s</info>', $i->getYear()));
+        $output->writeln(sprintf('Director:  <info>%s</info>', join(', ', $i->getDirector())));
+        $output->writeln(sprintf('Rating:    <info>%s</info>', $i->getRating()));
+        $output->writeln(sprintf('Length:    <info>%s</info>', $i->getLength()));
+        $output->writeln(sprintf('Color:     <info>%s</info>', $i->getColor()));
+        $output->writeln(sprintf('Genres:    <info>%s</info>', join(', ', $i->getGenres())));
+        $output->writeln(sprintf('Languages: <info>%s</info>', join(', ', $i->getLanguages())));
+        $output->writeln(sprintf('Countries: <info>%s</info>', join(', ', $i->getCountries())));
+        $output->writeln(sprintf('Votes:     <info>%s</info>', $i->getVotes()));
+        $output->writeln(sprintf('Plot:      <info>%s</info>', $i->getPlot()));
+        $output->writeln(sprintf('Trailer:   <info>%s</info>', $i->getTrailer()));
+    })
+;
+
+$console
+    ->register('search')
+    ->setDefinition(array(
+        new InputArgument('query', InputArgument::REQUIRED, 'The query'),
+    ))
+    ->setDescription('Find movies ')
+    ->setCode(function (InputInterface $input, OutputInterface $output) {
+        $query = $input->getArgument('query');
+
+        $s = new IMDb\Search($query);
+
+        foreach ($s->getMovies() as $movie) {
+            $output->writeln(sprintf('<info>%s - %s</info>', $movie->getId(), $movie->getTitle()));
+        }
+    })
+;
+
+$console->run();
