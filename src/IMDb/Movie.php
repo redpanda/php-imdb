@@ -171,10 +171,6 @@ class Movie
         if (null === $this->crawler) {
             $client = new Client();
             $this->crawler = $client->request('GET', $this->url);
-
-            if (404 == $client->getResponse()->getStatus()) {
-                throw new \RuntimeException(sprintf('The movie with the IMDb ID "%s" does not exist.', $this->id));
-            }
         }
 
         return $this->crawler; 
