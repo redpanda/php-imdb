@@ -75,6 +75,20 @@ class Movie
         return $members;
     }
 
+    public function getCastCharacters()
+    {
+        $characters = array();
+
+        try {
+            $this->getCrawler()->filter("table.cast td.char")->each(function ($node, $i) use (&$characters) {
+                $characters[] = $node->nodeValue;
+            });
+        } catch (\Exception $e) {
+        }
+
+        return $characters;
+    }
+
     public function getRating()
     {
         try {

@@ -29,12 +29,17 @@ class MovieTest extends \PHPUnit_Framework_TestCase
     {
         $this->assertTrue(is_array($this->movie->getDirectors()));
         $this->assertSame(1, count($this->movie->getDirectors()));
-        $this->assertSame(array('John McTiernan'), $this->movie->getDirectors());
+        $this->assertSame(array('0001532' => 'John McTiernan'), $this->movie->getDirectors());
     }
 
     public function testGetCastMembers()
     {
         $this->assertTrue(is_array($this->movie->getCastMembers()));
+    }
+
+    public function testGetCastCharacters()
+    {
+        $this->assertTrue(is_array($this->movie->getCastCharacters()));
     }
 
     public function testGetGenres()

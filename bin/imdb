@@ -27,19 +27,20 @@ $console
 
         $i = new IMDb\Movie($id);
 
-        $output->writeln(sprintf('Title:         <info>%s</info>', $i->getTitle()));
-        $output->writeln(sprintf('Year:          <info>%s</info>', $i->getYear()));
-        $output->writeln(sprintf('Directors:      <info>%s</info>', join(', ', $i->getDirectors())));
-        $output->writeln(sprintf('Cast members:  <info>%s</info>', join(', ', $i->getCastMembers())));
-        $output->writeln(sprintf('Rating:        <info>%s</info>', $i->getRating()));
-        $output->writeln(sprintf('Length:        <info>%s</info>', $i->getLength()));
-        $output->writeln(sprintf('Color:         <info>%s</info>', $i->getColor()));
-        $output->writeln(sprintf('Genres:        <info>%s</info>', join(', ', $i->getGenres())));
-        $output->writeln(sprintf('Languages:     <info>%s</info>', join(', ', $i->getLanguages())));
-        $output->writeln(sprintf('Countries:     <info>%s</info>', join(', ', $i->getCountries())));
-        $output->writeln(sprintf('Votes:         <info>%s</info>', $i->getVotes()));
-        $output->writeln(sprintf('Plot:          <info>%s</info>', $i->getPlot()));
-        $output->writeln(sprintf('Trailer:       <info>%s</info>', $i->getTrailer()));
+        $output->writeln(sprintf('Title:           <info>%s</info>', $i->getTitle()));
+        $output->writeln(sprintf('Year:            <info>%s</info>', $i->getYear()));
+        $output->writeln(sprintf('Directors:       <info>%s</info>', join(', ', $i->getDirectors())));
+        $output->writeln(sprintf('Cast members:    <info>%s</info>', join(', ', $i->getCastMembers())));
+        $output->writeln(sprintf('Cast characters: <info>%s</info>', join(', ', $i->getCastCharacters())));
+        $output->writeln(sprintf('Rating:          <info>%s</info>', $i->getRating()));
+        $output->writeln(sprintf('Length:          <info>%s</info>', $i->getLength()));
+        $output->writeln(sprintf('Color:           <info>%s</info>', $i->getColor()));
+        $output->writeln(sprintf('Genres:          <info>%s</info>', join(', ', $i->getGenres())));
+        $output->writeln(sprintf('Languages:       <info>%s</info>', join(', ', $i->getLanguages())));
+        $output->writeln(sprintf('Countries:       <info>%s</info>', join(', ', $i->getCountries())));
+        $output->writeln(sprintf('Votes:           <info>%s</info>', $i->getVotes()));
+        $output->writeln(sprintf('Plot:            <info>%s</info>', $i->getPlot()));
+        $output->writeln(sprintf('Trailer:         <info>%s</info>', $i->getTrailer()));
     })
 ;
 
