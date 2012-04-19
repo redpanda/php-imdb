@@ -1,5 +1,9 @@
-ffffilm
-=======
+PHP IMDb
+========
+
+A PHP 5.3 library for scraping IMDb, strongly inspired by [imdb](https://github.com/ariejan/imdb).
+
+## Installation
 
 ### Install vendors
 
@@ -10,23 +14,25 @@ ffffilm
 
     php composer.phar update
 
-Basic usage
------------
+## Usage
 
 ### Get Movie
 
-    <?php
-    $i = new IMDb\Movie(0095016);
-    $i->getTitle();
+```php
+<?php
+$i = new IMDb\Movie("0095016");
+$i->getTitle();
+```
 
 ### Search movie
 
-    <?php
-    $s = new IMDb\Search(Star Trek);
-    $s->getMovies();
+```php
+<?php
+$s = new IMDb\Search("Star Trek");
+$s->getMovies();
+```
 
-Command line
--------------
+## Command line
 
 ### Get movie
 
@@ -36,6 +42,12 @@ Command line
 
     bin/imdb search "Star Trek"
 
+## Tests
+
 ### Run the tests (requires PHPUnit >= 3.5)
 
     phpunit
+
+## License
+
+MIT, see LICENSE
