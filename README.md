@@ -29,7 +29,9 @@ $i->getTitle();
 ```php
 <?php
 $s = new IMDb\Search("Star Trek");
-$s->getMovies();
+foreach ($s->getMovies() as $movie) {
+    echo $movie->getTitle().PHP_EOL;
+}
 ```
 
 ## Command line
