@@ -13,6 +13,30 @@ class MovieTest extends \PHPUnit_Framework_TestCase
         $this->movie = new Movie('0095016');
     }
 
+    public function testGetTitle()
+    {
+        $this->assertTrue(is_string($this->movie->getTitle()));
+        $this->assertSame('Die Hard', $this->movie->getTitle());
+    }
+
+    public function testGetYear()
+    {
+        $this->assertTrue(is_int($this->movie->getYear()));
+        $this->assertSame(1988, $this->movie->getYear());
+    }
+
+    public function testGetDirectors()
+    {
+        $this->assertTrue(is_array($this->movie->getDirectors()));
+        $this->assertSame(1, count($this->movie->getDirectors()));
+        $this->assertSame(array('John McTiernan'), $this->movie->getDirectors());
+    }
+
+    public function testGetCastMembers()
+    {
+        $this->assertTrue(is_array($this->movie->getCastMembers()));
+    }
+
     public function testGetGenres()
     {
         $this->assertTrue(is_array($this->movie->getGenres()));
@@ -25,6 +49,12 @@ class MovieTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue(is_array($this->movie->getLanguages()));
         $this->assertSame(3, count($this->movie->getLanguages()));
         $this->assertSame(array('English', 'German', 'Italian'), $this->movie->getLanguages());
+    }
+
+    public function testGetColor()
+    {
+        $this->assertTrue(is_string($this->movie->getColor()));
+        $this->assertSame('Color', $this->movie->getColor());
     }
 
     public function testGetRating()
@@ -43,5 +73,10 @@ class MovieTest extends \PHPUnit_Framework_TestCase
     {
         $this->assertTrue(is_string($this->movie->getTrailer()));
         $this->assertSame('http://imdb.com/video/screenplay/vi581042457/', $this->movie->getTrailer());
+    }
+
+    public function tearDown()
+    {
+        $this->movie = null;
     }
 }

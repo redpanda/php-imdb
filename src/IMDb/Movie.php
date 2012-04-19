@@ -39,24 +39,38 @@ class Movie
     public function getYear()
     {
         try {
-            return $this->getCrawler()->filterXpath("//a[contains(@href, '/year')]")->text();
+            return intval($this->getCrawler()->filterXpath("//a[contains(@href, '/year')]")->text());
         } catch (\Exception $e) {
             return null;
         }
     }
 
-    public function getDirector()
+    public function getDirectors()
     {
-        $director = array();
+        $directors = array();
 
         try {
-            $this->getCrawler()->filterXpath("//div[@id='director-info']/div/a")->each(function ($node, $i) use (&$director) {
-                $director[] = $node->nodeValue;
+            $this->getCrawler()->filterXpath("//div[@id='director-info']/div/a")->each(function ($node, $i) use (&$directors) {
+                $directors[] = $node->nodeValue;
             });
         } catch (\Exception $e) {
         }
 
-        return $director;
+        return $directors;
+    }
+
+    public function getCastMembers()
+    {
+        $members = array();
+
+        try {
+            $this->getCrawler()->filter("table.cast td.nm a")->each(function ($node, $i) use (&$members) {
+                $members[] = $node->nodeValue;
+            });
+        } catch (\Exception $e) {
+        }
+
+        return $members;
     }
 
     public function getRating()
