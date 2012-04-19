@@ -29,7 +29,7 @@ $console
 
         $output->writeln(sprintf('Title:         <info>%s</info>', $i->getTitle()));
         $output->writeln(sprintf('Year:          <info>%s</info>', $i->getYear()));
-        $output->writeln(sprintf('Director:      <info>%s</info>', join(', ', $i->getDirectors())));
+        $output->writeln(sprintf('Directors:      <info>%s</info>', join(', ', $i->getDirectors())));
         $output->writeln(sprintf('Cast members:  <info>%s</info>', join(', ', $i->getCastMembers())));
         $output->writeln(sprintf('Rating:        <info>%s</info>', $i->getRating()));
         $output->writeln(sprintf('Length:        <info>%s</info>', $i->getLength()));

@@ -51,7 +51,8 @@ class Movie
 
         try {
             $this->getCrawler()->filterXpath("//div[@id='director-info']/div/a")->each(function ($node, $i) use (&$directors) {
-                $directors[] = $node->nodeValue;
+                preg_match('/\d+/', $node->getAttribute('href'), $matches);
+                $directors[$matches[0]] = $node->nodeValue;
             });
         } catch (\Exception $e) {
         }
@@ -65,7 +66,8 @@ class Movie
 
         try {
             $this->getCrawler()->filter("table.cast td.nm a")->each(function ($node, $i) use (&$members) {
-                $members[] = $node->nodeValue;
+                preg_match('/\d+/', $node->getAttribute('href'), $matches);
+                $members[$matches[0]] = $node->nodeValue;
             });
         } catch (\Exception $e) {
         }
