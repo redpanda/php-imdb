@@ -62,7 +62,7 @@ class Movie
     public function getRating()
     {
         try {
-            return substr($this->getCrawler()->filter('.starbar-meta b')->text(), 0, -3);
+            return floatval(substr($this->getCrawler()->filter('.starbar-meta b')->text(), 0, -3));
         } catch (\Exception $e) {
             return null;
         }
@@ -72,7 +72,7 @@ class Movie
     {
         try {
             preg_match('/\d+/', $this->getCrawler()->filterXpath("//h5[text()='Runtime:']/..")->text(), $matches);
-            return $matches[0];
+            return intval($matches[0]);
         } catch (\Exception $e) {
             return null;
         }
