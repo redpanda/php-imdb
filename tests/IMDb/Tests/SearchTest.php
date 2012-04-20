@@ -17,7 +17,7 @@ class SearchTest extends \PHPUnit_Framework_TestCase
     public function testGetMovies()
     {
         $this->assertTrue(is_array($this->search->getMovies()));
-        $this->assertTrue(count($this->search->getMovies()) > 10);
+        $this->assertGreaterThanOrEqual(10, count($this->search->getMovies()));
     }
 
     public function testExactMatch()
@@ -32,8 +32,8 @@ class SearchTest extends \PHPUnit_Framework_TestCase
         $movies = $search->getMovies();
 
         $this->assertTrue(is_array($movies));
-        $this->assertSame(1, count($movies));
-        $this->assertSame('I Killed My Lesbian Wife, Hung Her on a Meat Hook, and Now I Have a Three-Picture Deal at Disney', $movies[0]->getTitle());
+        $this->assertCount(1, $movies);
+        $this->assertStringStartsWith('I Killed My Lesbian Wife, Hung Her on', $movies[0]->getTitle());
     }
 
     public function tearDown()
