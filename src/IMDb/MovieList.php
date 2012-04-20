@@ -6,6 +6,11 @@ use Goutte\Client;
 
 abstract class MovieList
 {
+    public function getMovies()
+    {
+        return $this->parseMovies();
+    }
+
     protected function parseMovies()
     {
         $movies = $ids = array();
@@ -23,5 +28,15 @@ abstract class MovieList
         }
 
         return $movies;
+    }
+
+    protected function getCrawler()
+    {
+        if (null === $this->crawler) {
+            $client = new Client();
+            $this->crawler = $client->request('GET', $this->url);
+        }
+
+        return $this->crawler; 
     }
 }

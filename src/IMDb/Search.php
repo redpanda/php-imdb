@@ -34,14 +34,4 @@ class Search extends MovieList
         
         return array(new Movie($id, trim($title)));
     }
-
-    protected function getCrawler()
-    {
-        if (null === $this->crawler) {
-            $client = new Client();
-            $this->crawler = $client->request('GET', $this->url);
-        }
-
-        return $this->crawler; 
-    }
 }
