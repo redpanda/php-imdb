@@ -21,7 +21,7 @@ class SearchTest extends \PHPUnit_Framework_TestCase
 
     public function testExactMatch()
     {
-        $this->assertTrue(is_bool($this->search->getMovies()));
+        $this->assertTrue(is_bool($this->search->exactMatch()));
         $this->assertFalse($this->search->exactMatch());
     }
 
