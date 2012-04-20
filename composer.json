@@ -2,7 +2,7 @@
     "name": "redpanda/php-imdb",
     "description": "A PHP 5.3 library for scraping IMDb.",
     "keywords": ["imdb"],
-    "licence": MIT,
+    "licence": "MIT",
     "autoload": {
         "psr-0": { "": "src/" }
     },
