@@ -21,6 +21,11 @@ class Search extends MovieList
         return $this->exactMatch() ? $this->parseMovie() : $this->parseMovies();
     }
 
+    public function exactMatch()    
+    {
+        return 1 === $this->getCrawler()->filterXpath('//table[@id="title-overview-widget-layout"]')->count();
+    }
+
     protected function parseMovie()
     {
         preg_match('/\d+/', $this->getCrawler()->filterXpath("//head/link[@rel='canonical']")->attr('href'), $matches);
@@ -28,11 +33,6 @@ class Search extends MovieList
         $title = trim($this->getCrawler()->filterXpath('//h1/text()[1]')->text());
         
         return array(new Movie($id, trim($title)));
-    }
-
-    public function exactMatch()    
-    {
-        return 1 === $this->getCrawler()->filterXpath('//table[@id="title-overview-widget-layout"]')->count();
     }
 
     protected function getCrawler()

@@ -155,7 +155,7 @@ class Movie
     public function getVotes()
     {
         try {
-            return preg_replace('/[^\d+]/', "", $this->getCrawler()->filter('#tn15rating > .tn15more')->text());
+            return intval(preg_replace('/[^\d+]/', "", $this->getCrawler()->filter('#tn15rating > .tn15more')->text()));
         } catch (\Exception $e) {
             return null;
         }

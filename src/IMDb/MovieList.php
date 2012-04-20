@@ -6,7 +6,7 @@ use Goutte\Client;
 
 abstract class MovieList
 {
-    public function parseMovies()
+    protected function parseMovies()
     {
         $movies = $ids = array();
 
