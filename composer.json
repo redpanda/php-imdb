@@ -8,6 +8,9 @@
     },
     "require": {
         "php": ">=5.3.2",
-        "symfony/console": "dev-master"
+        "kriswallsmith/buzz": "dev-master",
+        "symfony/console": "dev-master",
+        "symfony/dom-crawler": "dev-master",
+        "symfony/css-selector": "dev-master"
     }
 }

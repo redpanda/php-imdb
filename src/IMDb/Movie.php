@@ -2,7 +2,8 @@
 
 namespace IMDb;
 
-use Goutte\Client;
+use Buzz\Browser;
+use Symfony\Component\DomCrawler\Crawler;
 
 class Movie
 {
@@ -199,8 +200,9 @@ class Movie
     protected function getCrawler()
     {
         if (null === $this->crawler) {
-            $client = new Client();
-            $this->crawler = $client->request('GET', $this->url);
+            $client = new Browser();
+
+            $this->crawler = new Crawler($client->get($this->url)->getContent());
         }
 
         return $this->crawler; 
