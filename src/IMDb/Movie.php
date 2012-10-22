@@ -10,13 +10,23 @@ class Movie
     protected $id;
     protected $url;
     protected $title;
+
+    /**
+     * @var Crawler
+     */
     protected $crawler;
 
+    /**
+     * Constructor
+     *
+     * @param $imdbId
+     * @param null $title
+     */
     public function __construct($imdbId, $title = null)
     {
-        $this->id = $imdbId;
+        $this->id    = $imdbId;
         $this->title = $title;
-        $this->url = 'http://akas.imdb.com/title/tt'.$imdbId.'/combined';
+        $this->url   = 'http://akas.imdb.com/title/tt'.$imdbId.'/combined';
     }
 
     public function getId()
@@ -156,7 +166,7 @@ class Movie
     public function getVotes()
     {
         try {
-            return intval(preg_replace('/[^\d+]/', "", $this->getCrawler()->filter('#tn15rating > .tn15more')->text()));
+            return intval(preg_replace('/[^\d+]/', "", $this->getCrawler()->filter('.tn15more')->text()));
         } catch (\Exception $e) {
             return null;
         }
@@ -197,6 +207,9 @@ class Movie
         }
     }
 
+    /**
+     * @return Crawler
+     */
     protected function getCrawler()
     {
         if (null === $this->crawler) {
