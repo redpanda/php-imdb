@@ -6,6 +6,9 @@ use IMDb\Movie;
 
 class MovieTest extends \PHPUnit_Framework_TestCase
 {
+    /**
+     * @var Movie;
+     */
     private $movie;
 
     public function setUp()
@@ -102,7 +105,10 @@ class MovieTest extends \PHPUnit_Framework_TestCase
     public function testGetPlot()
     {
         $this->assertTrue(is_string($this->movie->getPlot()));
-        $this->assertEquals('New York cop John McClane gives terrorists a dose of their own medicine as they hold hostages in an LA office building.', $this->movie->getPlot());
+        $this->assertEquals(
+            'John McClane, officer of the NYPD, tries to save wife Holly Gennaro and several others, taken hostage by German terrorist Hans Gruber during a Christmas party at the Nakatomi Plaza in Los Angeles.',
+            $this->movie->getPlot()
+        );
     }
 
     public function tearDown()
